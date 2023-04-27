@@ -56,4 +56,23 @@
     width: 400px;
 }
   
+.container {
+    margin: 50px;
+    background: #fff url(https://i.ibb.co/x7SpXXZ/squares4.png) 12px 2px no-repeat;
+    width: 160px;
+    overflow: hidden;
+  }
   
+  .container input {
+    letter-spacing: 20px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 150%;
+    font-weight: bold;
+    height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 160px;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+  }

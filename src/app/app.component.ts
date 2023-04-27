@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title: String = 'School';
   aufgabe_84_2_target: number = 0;
   aufgabe_84_2_guesses: number = 0;
 
@@ -287,7 +288,7 @@ export class AppComponent implements OnInit {
     let dice: number[] = [0, 0, 0, 0, 0, 0];
     let sum: number = 0;
 
-    this.aufgabe_83_4_result = "";
+    this.aufgabe_84_1_result = "";
     while (true){
       let roll = Math.round(Math.random() * 5 + 1);
       dice[roll - 1]++;
