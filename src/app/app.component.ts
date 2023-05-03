@@ -333,4 +333,102 @@ export class AppComponent implements OnInit {
       this.randomize_target();
     }
   }
+
+  aufgabe_84_3_numbers: number[] = [];
+  aufgabe_84_3_result: string = "";
+
+  aufgabe_84_3(userNumbers: string[]): void {
+    if (userNumbers.length !== 6 || !this.areValidLottoNumbers(userNumbers)) {
+      this.aufgabe_84_3_result = 'Please enter 6 valid 2-digit numbers (1-49).';
+      return;
+    }
+
+    this.generateLottoNumbers();
+    const matchedNumbers = this.getMatchedNumbers(userNumbers);
+    
+    const matchedCount = matchedNumbers.length;
+    this.aufgabe_84_3_result = `Lotto Numbers: ${this.aufgabe_84_3_numbers.join(", ")}.`;
+    this.aufgabe_84_3_result += '\n\n';
+    this.aufgabe_84_3_result += `You matched ${matchedCount} number(s): ${matchedNumbers.join(", ")}`;
+  }
+
+  generateLottoNumbers(): void {
+    const uniqueNumbers = new Set<number>();
+    while (uniqueNumbers.size < 6) {
+      const newNumber = Math.round(Math.random() * 48 + 1);
+      uniqueNumbers.add(newNumber);
+    }
+    this.aufgabe_84_3_numbers = Array.from(uniqueNumbers).sort((a, b) => a - b);
+  }
+  
+
+  getMatchedNumbers(userNumbers: string[]): number[] {
+    const matchedNumbers: number[] = [];
+    for (let num in userNumbers){
+      const userNum = Number(num);
+      if (this.aufgabe_84_3_numbers.includes(userNum)) {
+        matchedNumbers.push(userNum);
+      }
+    }
+    return matchedNumbers;
+  }
+  areValidLottoNumbers(numbers: string[]): boolean {
+    let uniqueNumbers = new Set();
+    
+    for (const numStr of numbers) {
+      if (numStr.length == 0){
+        return false;
+      }
+      if (!this.isValidNumberString(numStr)) {
+        return false;
+      }
+      const num = Number(numStr);
+  
+      // Check if the number is in the valid range
+      if (isNaN(num) || num < 1 || num > 49) {
+        return false;
+      }
+  
+      // Check if the number is unique
+      if (uniqueNumbers.has(num)) {
+        return false;
+      }
+  
+      uniqueNumbers.add(num);
+    }
+  
+    return true;
+  }
+  
+
+  aufgabe_84_4_result: string = "";
+
+  isPrime(input: number): boolean {
+    if (input < 2) {
+      return false;
+    }
+    let stop: number = Math.sqrt(input);
+    for (let i = 2; i <= stop; i++) {
+      if (input % i == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  aufgabe_84_4(input: string): void {
+    if (!this.isValidNumberString(input)) {
+      this.aufgabe_84_4_result = 'The input is not a valid number.';
+      return;
+    } 
+
+    let inputNumber: number = Number(input);
+    this.aufgabe_84_4_result = "Primes = ";
+    for (let i = 2; i < inputNumber; i++) {
+      if (this.isPrime(i)) {
+        this.aufgabe_84_4_result += `${i} `;
+      }
+    }
+  }
+  
 }
