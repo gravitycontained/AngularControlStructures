@@ -52,33 +52,40 @@ export class AppComponent implements OnInit {
 		}
 		return result;
 	}
-	aufgabe_76_2(): string{
+
+
+    //76.2
+	aufgabe_76_2_animals(): string{
 		let animals: string[] = ["tiger", "mouse", "bird", "python", "elephant", "monkey"];
 
 		let result: string = "";
-		for (let i = 0; i < animals.length; i++){
-			result += animals[i] + " ist ein Tier.\n";
-		}
-		
+        for (let animal of animals) {
+			result += `'${animal}' ist ein Tier.\n`;
+        }
 		return result;
 	}
 
-	
-	aufgabe_76_3_words: string[] = [];
+	//76.3
+	aufgabe_76_3_word_list: string[] = [];
 
-	aufgabe_76_3_add(input: string): void {
-		this.aufgabe_76_3_words.push(input);
+	aufgabe_76_3_words_add(input: string): void {
+		this.aufgabe_76_3_word_list.push(input);
 	}
-	aufgabe_76_3_clear(): void {
-		this.aufgabe_76_3_words = [];
+
+	aufgabe_76_3_words_clear(): void {
+		this.aufgabe_76_3_word_list = [];
 	}
-	aufgabe_76_3(): string {
+
+	aufgabe_76_3_words(): string {
 		let result: string = "";
-		for (let i = 0; i < this.aufgabe_76_3_words.length; i++){
-			result += this.aufgabe_76_3_words[i] + "\n";
+		for (let i = 0; i < this.aufgabe_76_3_word_list.length; i++){
+			result +=  `words[${i}] = ${this.aufgabe_76_3_word_list[i]}\n`;
 		}
 		return result;
 	}
+
+
+
 
 	aufgabe_79_1_result: string = "";
 
