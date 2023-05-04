@@ -56,10 +56,10 @@ export class AppComponent implements OnInit {
 
     //76.2
 	aufgabe_76_2_animals(): string{
-		let animals: string[] = ["tiger", "mouse", "bird", "python", "elephant", "monkey"];
+		const animals: string[] = ["tiger", "mouse", "bird", "python", "elephant", "monkey"];
 
 		let result: string = "";
-        for (let animal of animals) {
+        for (const animal of animals) {
 			result += `'${animal}' ist ein Tier.\n`;
         }
 		return result;
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
 			return;
 		} 
 
-		let inputNumber: number = Number(input);
+		const inputNumber: number = Number(input);
 
 		if (inputNumber > 10) {
 			this.aufgabe_79_1_result = 'The number is greater than 10.';
@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
 	//79.2
 	aufgabe_79_2_add(input: string): void {
 		if (this.isValidNumberString(input)) {
-			let inputNumber: number = Number(input);
+			const inputNumber: number = Number(input);
 			this.aufgabe_79_2_numbers.push(inputNumber);
 		}
 	}
@@ -125,7 +125,7 @@ export class AppComponent implements OnInit {
 		let max: number = Number.MIN_VALUE;
 
 		for (let i = 0; i < this.aufgabe_79_2_numbers.length; i++){
-			let current = this.aufgabe_79_2_numbers[i];
+			const current = this.aufgabe_79_2_numbers[i];
 			if (min > current){
 				min = current;
 			}
@@ -145,7 +145,7 @@ export class AppComponent implements OnInit {
 			return;
 		} 
 
-		let inputNumber: number = Number(input);
+		const inputNumber: number = Number(input);
 		let is_prime: boolean = false;
 
 		if (inputNumber % 400 == 0){
@@ -167,22 +167,22 @@ export class AppComponent implements OnInit {
 		}
 	}
 
-	aufgabe_79_4_result: string = "";
+	aufgabe_79_4_grade_result: string = "";
 
-	aufgabe_79_4(grade: string, darkEyeColor: boolean, longHair: boolean, niceWeather: boolean, hasSushi: boolean, isStrong: boolean): void {
+	aufgabe_79_4_grade(grade: string, darkEyeColor: boolean, longHair: boolean, niceWeather: boolean, hasSushi: boolean, isStrong: boolean): void {
 		if (!grade) {
-			this.aufgabe_79_4_result = 'Please enter a grade.';
+			this.aufgabe_79_4_grade_result = 'Please enter a grade.';
 			return;
 		}
 	
 		let gradeNumber: number = Number(grade);
 	
 		if (gradeNumber < 1 || gradeNumber > 6) {
-			this.aufgabe_79_4_result = 'Please enter a valid grade (1-6).';
+			this.aufgabe_79_4_grade_result = 'Please enter a valid grade (1-6).';
 			return;
 		}
 
-		let factor:number = 0.1;
+		const factor:number = 0.1;
 
 		if (darkEyeColor){
 			if (longHair){
@@ -214,7 +214,7 @@ export class AppComponent implements OnInit {
 		gradeNumber = this.clamp(gradeNumber, 1, 6);
 
 		gradeNumber = Math.round(gradeNumber * 2) / 2;
-		this.aufgabe_79_4_result = `Grade: ${gradeNumber}`;
+		this.aufgabe_79_4_grade_result = `Grade: ${gradeNumber}`;
 	}	
 	
 	aufgabe_83_1(): string{
@@ -237,9 +237,9 @@ export class AppComponent implements OnInit {
 		} 
 	
 		let capital: number = Number(input);
-
-		let rate = 0.1;
 		let years = 0;
+
+		const rate = 0.1;
 		while (capital < Math.pow(10, 7)){
 			capital *= (1 + rate);
 			years++;
@@ -264,7 +264,7 @@ export class AppComponent implements OnInit {
 		let year_number: number = Number(year);
 
 		this.aufgabe_83_3_result = "";
-		let depreciation = cash_number / year_number;
+		const depreciation = cash_number / year_number;
 		while (year_number){
 			cash_number -= depreciation;
 			year_number--;
@@ -278,7 +278,7 @@ export class AppComponent implements OnInit {
 	aufgabe_83_4(): void {
 		this.aufgabe_83_4_result = "";
 		while (true){
-			let roll = Math.round(Math.random() * 5 + 1);
+			const roll = Math.round(Math.random() * 5 + 1);
 
 			this.aufgabe_83_4_result += `Rolled a ${roll}\n`;
 
@@ -292,12 +292,12 @@ export class AppComponent implements OnInit {
 	aufgabe_84_1_result: string = "";
 	aufgabe_84_1(): void {
 
-		let dice: number[] = [0, 0, 0, 0, 0, 0];
+		const dice: number[] = [0, 0, 0, 0, 0, 0];
 		let sum: number = 0;
 
 		this.aufgabe_84_1_result = "";
 		while (true){
-			let roll = Math.round(Math.random() * 5 + 1);
+			const roll = Math.round(Math.random() * 5 + 1);
 			dice[roll - 1]++;
 			sum += roll;
 
@@ -320,7 +320,7 @@ export class AppComponent implements OnInit {
 		} 
 		
 		const max_guess:number = 7;
-		let guess: number = Number(input);
+		const guess: number = Number(input);
 		if (guess == this.aufgabe_84_2_target){
 			this.aufgabe_84_2_result = `${input} was the target!`;
 			this.randomize_target();
@@ -371,7 +371,7 @@ export class AppComponent implements OnInit {
 
 	getMatchedNumbers(userNumbers: string[]): number[] {
 		const matchedNumbers: number[] = [];
-		for (let num in userNumbers){
+		for (const num in userNumbers){
 			const userNum = Number(num);
 			if (this.aufgabe_84_3_numbers.includes(userNum)) {
 			  matchedNumbers.push(userNum);
@@ -380,7 +380,7 @@ export class AppComponent implements OnInit {
 		return matchedNumbers;
 	}
 	areValidLottoNumbers(numbers: string[]): boolean {
-		let uniqueNumbers = new Set();
+		const uniqueNumbers = new Set();
 		
 		for (const numStr of numbers) {
 			if (numStr.length == 0){
@@ -414,7 +414,7 @@ export class AppComponent implements OnInit {
 		if (input < 2) {
 			return false;
 		}
-		let stop: number = Math.sqrt(input);
+		const stop: number = Math.sqrt(input);
 		for (let i = 2; i <= stop; i++) {
 			if (input % i == 0) {
 				return false;
@@ -429,7 +429,7 @@ export class AppComponent implements OnInit {
 			return;
 		} 
 
-		let inputNumber: number = Number(input);
+		const inputNumber: number = Number(input);
 		this.aufgabe_84_4_result = "Primes = ";
 		for (let i = 2; i < inputNumber; i++) {
 			if (this.isPrime(i)) {

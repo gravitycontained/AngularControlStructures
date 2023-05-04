@@ -133,25 +133,25 @@
 			<p class="glowing-text">Grade: </p>
 		</div>
 		<div class="grid-item">
-			<input type="number" min="1" max="6" step="0.5" #gradeInput placeholder="Enter a grade" style="padding: 5px;" (input)="aufgabe_79_4(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)">
+			<input type="number" min="1" max="6" step="0.5" #gradeInput placeholder="Enter a grade" style="padding: 5px;" (input)="aufgabe_79_4_grade(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)">
 		</div>
 		<div class="grid-item">
-			<input type="checkbox" #darkEyeColor (change)="aufgabe_79_4(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 👁️
+			<input type="checkbox" #darkEyeColor (change)="aufgabe_79_4_grade(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 👁️
 		</div>
 		<div class="grid-item">
-			<input type="checkbox" #longHair (change)="aufgabe_79_4(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 👩‍🦰
+			<input type="checkbox" #longHair (change)="aufgabe_79_4_grade(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 👩‍🦰
 		</div>
 		<div class="grid-item">
-			<input type="checkbox" #niceWeather (change)="aufgabe_79_4(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 🌤️
+			<input type="checkbox" #niceWeather (change)="aufgabe_79_4_grade(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 🌤️
 		</div>
 		<div class="grid-item">
-			<input type="checkbox" #hasSushi (change)="aufgabe_79_4(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 🍣
+			<input type="checkbox" #hasSushi (change)="aufgabe_79_4_grade(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 🍣
 		</div>
 		<div class="grid-item">
-			<input type="checkbox" #isStrong (change)="aufgabe_79_4(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 💪
+			<input type="checkbox" #isStrong (change)="aufgabe_79_4_grade(gradeInput.value, darkEyeColor.checked, longHair.checked, niceWeather.checked, hasSushi.checked, isStrong.checked)"> 💪
 		</div>
 		<div class="grid-item result" style="width: 200px;">
-			{{ aufgabe_79_4_result }}
+			{{ aufgabe_79_4_grade_result }}
 		</div>
 	</div>
 </div>
