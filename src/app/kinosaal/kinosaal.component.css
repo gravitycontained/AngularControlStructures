@@ -1,0 +1,32 @@
+.seat {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+.occupied {
+    background-color: rgb(131, 52, 103);
+}
+
+.available {
+    background-color: rgb(61, 156, 123);
+}
+
+.kino_element{
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    color: white;
+}
+.kino_button{
+    background-color: rgb(202, 202, 202); 
+    border-radius: 5px;
+    border: 0px; 
+    padding: 5px;
+}​
+
+#cssTable td 
+{
+    text-align: center; 
+    vertical-align: middle;
+}
