@@ -96,31 +96,31 @@ export class Kinosaal{
 
 	public reserviereSitz(sitzNummer: number): void {
 		let sitz: Sitz = this.sitze[sitzNummer];
-		if (sitz.istBelegt() == false){
+		if (sitz.istBelegt() == false) {
 			sitz.setBelegt(true);
 		}
 	}
 	public reserviereFreienSitz(): void {
 		let freier_sitz: number = this.sitze.findIndex(sitz => sitz.istBelegt() == false);
 
-		if (freier_sitz != -1){ 
+		if (freier_sitz != -1) { 
 			this.reserviereSitz(freier_sitz);
 		}
 	}
 	public reserviereAneinanderliegendeSitze(sitze: number): void {
 		let freieSitze: number = 0;
 		for (let i = 0; i < this.anzahlSitze; i++) {
-			if (this.sitze[i].istBelegt() == false){
+			if (this.sitze[i].istBelegt() == false) {
 				freieSitze++;
 
-				if (freieSitze >= sitze){
+				if (freieSitze >= sitze) {
 					for (let j = sitze; j >= 0; j--) {
 						this.sitze[i - j].setBelegt(true);
 					}
 					return;
 				}
 			}
-			else{
+			else {
 				freieSitze = 0;
 			}
 		}
@@ -137,13 +137,13 @@ export class Kinosaal{
 			sitz.belegt = this.sitze[i].istBelegt();
 			sitz.sitz = this.sitze[i].getSitzNummer();
 
-			if (this.sitze[i].istLoge()){
+			if (this.sitze[i].istLoge()) {
 				loge.push(sitz);
 			}
-			else if (this.sitze[i].istParkett()){
+			else if (this.sitze[i].istParkett()) {
 				parkett.push(sitz);
 			}
-			else{
+			else {
 				normal.push(sitz);
 			}
 		}
@@ -166,26 +166,26 @@ export class KinosaalComponent {
 	seatData: SitzData[][] = [];
   	seatTypes = ['loge', 'normal', 'parkett'];
 
-	public reset(): void{
+	public reset(): void {
 		this.kinosaal = new Kinosaal(38, 19);
 		this.seatData = this.kinosaal.getBelegteReihen();
 	}
-	public reserviereFreienSitz(): void{
+	public reserviereFreienSitz(): void {
 		this.kinosaal.reserviereFreienSitz();
 		this.seatData = this.kinosaal.getBelegteReihen();
 	}
-	public reserviere(input:String): void{
+	public reserviere(input:String): void {
 		let sitz: number = Number(input);
 		this.kinosaal.reserviereSitz(sitz - 1);
 		this.seatData = this.kinosaal.getBelegteReihen();
 	}
-	public reserviereReihe(input:String): void{
+	public reserviereReihe(input:String): void {
 		let reihen: number = Number(input);
 		this.kinosaal.reserviereAneinanderliegendeSitze(reihen);
 		this.seatData = this.kinosaal.getBelegteReihen();
 	}
 
-	constructor(){
+	constructor() {
 		this.kinosaal = new Kinosaal(38, 19);
 		this.seatData = this.kinosaal.getBelegteReihen();
 	}
