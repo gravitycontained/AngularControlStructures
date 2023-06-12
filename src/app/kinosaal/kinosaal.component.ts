@@ -108,6 +108,9 @@ export class Kinosaal{
 		}
 	}
 	public reserviereAneinanderliegendeSitze(sitze: number): void {
+        if (sitze == 0){
+            return;
+        }
 		let freieSitze: number = 0;
 		for (let i = 0; i < this.anzahlSitze; i++) {
 			if (this.sitze[i].istBelegt() == false) {
