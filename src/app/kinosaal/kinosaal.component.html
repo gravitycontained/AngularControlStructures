@@ -28,7 +28,7 @@
                         <td class="field" *ngFor="let seat of row; let j = index" style="vertical-align: middle;"
                             [ngClass]="{'occupied': seatData[i][j].belegt, 'available': !seatData[i][j].belegt, 'seat': true}">
                             <div class = "vertical-center">
-                                <h2 style="margin: 0px; margin-top: 5px;" class = "glowing-text">{{seatData[i][j].sitz}}</h2>
+                                <h2 style="margin: 0px; margin-top: 5px;" class = "glowing-text">{{seatData[i][j].sitzNummer}}</h2>
                             </div>
                         </td>
                     </div>
