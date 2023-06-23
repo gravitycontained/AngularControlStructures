@@ -60,19 +60,15 @@ export class SitzData{
 	belegt: boolean = false;
 	sitzNummer: number = 0;
 }
-export class Saal{
+export abstract class Saal{
 	protected sitze: Sitz[] = [];
 	protected anzahlSitze: number = 0;
 	protected raumNummer: number = 0;
-    protected leinwandGröße: number = 0;
-    protected dolbySystem: string = "";
 
 
-	public create(raumNummer: number, sitze: number, leinwandGröße : number, dolbySystem : string): void {
+	public create(raumNummer: number, sitze: number): void {
 		
 		this.setRaumNummer(raumNummer);
-        this.setLeinwandGröße(leinwandGröße);
-        this.setDolbySystem(dolbySystem);
 
 		this.sitze = [];
 
@@ -106,9 +102,11 @@ export class Saal{
 		}
 		this.anzahlSitze = this.sitze.length;
 	}
-	constructor(raumNummer: number, sitze: number, leinwandGröße : number, dolbySystem : string) {
-		this.create(raumNummer, sitze, leinwandGröße, dolbySystem);
+	constructor(raumNummer: number, sitze: number) {
+		this.create(raumNummer, sitze);
 	}
+
+    public abstract getInfos(): string;
 
 	public reserviereSitz(sitzNummer: number): void {
 		let sitz: Sitz = this.sitze[sitzNummer];
@@ -180,6 +178,16 @@ export class Saal{
     public getRaumNummer(): number {
         return this.raumNummer;
     }
+}
+
+export class Kinosaal extends Saal{
+    private leinwandGröße: number = 0;
+    private dolbySystem: string = "";
+	constructor(raumNummer: number, sitze: number, leinwandGröße : number, dolbySystem : string) {
+        super(raumNummer, sitze);
+        this.setLeinwandGröße(leinwandGröße);
+        this.setDolbySystem(dolbySystem);
+    }
 
     public getLeinwandGröße(): number {
         return this.leinwandGröße;
@@ -188,7 +196,6 @@ export class Saal{
     public setLeinwandGröße(leinwandGröße: number): void {
         this.leinwandGröße = leinwandGröße;
     }
-
     public getDolbySystem(): string {
         return this.dolbySystem;
     }
@@ -197,17 +204,28 @@ export class Saal{
         this.dolbySystem = dolbySystem;
     }
 
-}
-
-export class Kinosaal extends Saal{
-	constructor(raumNummer: number, sitze: number, leinwandGröße : number, dolbySystem : string) {
-        super(raumNummer, sitze, leinwandGröße, dolbySystem);
+    public override getInfos(): string {
+        return "Leinwandgröße: " + this.leinwandGröße + " DolbySystem: " + this.dolbySystem;
     }
 }
 
 export class Theatersaal extends Saal{
-	constructor(raumNummer: number, sitze: number, leinwandGröße : number, dolbySystem : string) {
-        super(raumNummer, sitze, leinwandGröße, dolbySystem);
+    private bühnenGröße: number = 0;
+	constructor(raumNummer: number, sitze: number, bühnenGröße : number) {
+        super(raumNummer, sitze);
+        this.setBühnenGröße(bühnenGröße);
+    }
+
+    public getBühnenGröße(): number {
+        return this.bühnenGröße;
+    }
+
+    public setBühnenGröße(bühnenGröße: number): void {
+        this.bühnenGröße = bühnenGröße;
+    }
+    
+    public override getInfos(): string {
+        return "Bühnengröße: " + this.bühnenGröße;
     }
 }
 
@@ -224,7 +242,7 @@ export class KinosaalComponent {
   	seatTypes = ['loge', 'normal', 'parkett'];
 
 	public reset(): void {
-		this.saal = new Kinosaal(38, 19, 10, "Dolby Atmos");
+		this.saal = new Kinosaal(38, 19, 400, "Dolby Atmos");
 		this.seatData = this.saal.getBelegteReihen();
 	}
 	public reserviereFreienSitz(): void {
@@ -243,7 +261,7 @@ export class KinosaalComponent {
 	}
 
 	constructor() {
-		this.saal = new Kinosaal(38, 19, 10, "Dolby Atmos");
+		this.saal = new Kinosaal(38, 19, 400, "Dolby Atmos");
 		this.seatData = this.saal.getBelegteReihen();
 	}
 
