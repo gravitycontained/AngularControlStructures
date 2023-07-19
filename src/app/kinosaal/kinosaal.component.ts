@@ -180,6 +180,17 @@ export abstract class Saal{
     }
 }
 
+export interface InformationsInterface{
+    getInfos(): string;
+}
+
+export class Bistro implements InformationsInterface{
+    
+    public getInfos(): string {
+        return "Bistro";
+    }
+}
+
 export class Kinosaal extends Saal{
     private leinwandGröße: number = 0;
     private dolbySystem: string = "";
